@@ -1,0 +1,29 @@
+name: goalie
+description: A Flutter Goal and Task tracking app.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  get:
+  sqflite:
+  shared_preferences:
+  animate_do:
+  flutter_staggered_grid_view:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
