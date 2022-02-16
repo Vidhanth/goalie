@@ -18,6 +18,8 @@ dependencies:
   shared_preferences:
   animate_do:
   flutter_staggered_grid_view:
+  google_fonts:
+  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:
@@ -26,4 +28,6 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 flutter:
+  assets:
+    - assets/images/
   uses-material-design: true

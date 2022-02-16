@@ -5,8 +5,12 @@ class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Tasks'),
+    return Scaffold(
+      body: Column(
+        children: const [
+          Text('Tasks'),
+        ],
+      ),
     );
   }
 }
