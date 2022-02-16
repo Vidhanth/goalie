@@ -21,9 +21,7 @@ class GoalsScreen extends StatelessWidget {
             ),
             child: IconButton(
               splashRadius: 24.0,
-              onPressed: () {
-                SettingsHelper.instance.toggleTheme();
-              },
+              onPressed: SettingsHelper.instance.toggleTheme,
               icon: Icon(
                 Get.isDarkMode
                     ? Icons.light_mode_outlined
