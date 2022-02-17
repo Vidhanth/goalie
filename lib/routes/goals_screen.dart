@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goalie/components/button.dart';
+import 'package:goalie/components/sheet.dart';
 import 'package:goalie/res/strings.dart';
 import 'package:goalie/utils/settings_helper.dart';
 
@@ -41,16 +43,20 @@ class GoalsScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.transparent,
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: const Text(
-          addGoalBtnText,
-          style: TextStyle(
-            color: Colors.white,
-          ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+        child: Button(
+          text: addGoalBtnText,
+          onPressed: () {
+            Get.bottomSheet(Sheet(
+              title: 'Enter Goal',
+              onSubmit: (goal) {
+                print(goal);
+              },
+            ));
+          },
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(30, 0, 30, 50),
