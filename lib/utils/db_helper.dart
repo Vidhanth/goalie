@@ -1,6 +1,5 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-
 import '../models/task.dart';
 import '../models/goal.dart';
 
@@ -63,9 +62,12 @@ class DBHelper {
     ''');
   }
 
-  Future<List<Map<String, dynamic>>> getAllGoals() async {
+  Future<List<Goal>> getAllGoals() async {
     Database db = await instance.database;
-    return await db.query(_goalsTable);
+    List<Map<String, dynamic>> rawGoals = await db.query(_goalsTable);
+    List<Goal> goals =
+        rawGoals.map((rawGoal) => Goal.fromMap(rawGoal)).toList();
+    return goals;
   }
 
   Future<int> createGoal(Goal goal) async {
@@ -85,11 +87,9 @@ class DBHelper {
     return rowsAffected;
   }
 
-  Future<int> deleteGoal(int goalId) async {
+  Future<void> deleteGoal(int goalId) async {
     Database db = await instance.database;
-    int deletedId =
-        await db.delete(_goalsTable, where: "$id = ?", whereArgs: [goalId]);
-    return deletedId;
+    await db.delete(_goalsTable, where: "$id = ?", whereArgs: [goalId]);
   }
 
   Future<List<Map<String, dynamic>>> getAllTasks(int goalId) async {
