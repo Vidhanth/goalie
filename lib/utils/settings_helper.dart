@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -15,6 +16,8 @@ class SettingsHelper {
 
   void toggleTheme() {
     Get.changeThemeMode(isDarkMode ? ThemeMode.light : ThemeMode.dark);
+    SystemChrome.setSystemUIOverlayStyle(
+        isDarkMode ? SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light);
     _appSettings.write('darkmode', !isDarkMode);
   }
 }
