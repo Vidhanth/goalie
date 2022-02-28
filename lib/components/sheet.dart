@@ -14,6 +14,13 @@ class Sheet extends StatelessWidget {
     required this.onSubmit,
   }) : super(key: key);
 
+  submit(String value) async {
+    if (value.isNotEmpty) {
+      await onSubmit.call(value);
+    }
+    Get.back();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -28,6 +35,9 @@ class Sheet extends StatelessWidget {
           children: [
             TextField(
               controller: _controller,
+              onSubmitted: (value) {
+                submit(value.trim());
+              },
               style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
               decoration: InputDecoration(
                 contentPadding:
@@ -47,9 +57,8 @@ class Sheet extends StatelessWidget {
             ),
             Button(
               text: 'Done',
-              onPressed: () async {
-                await onSubmit.call(_controller.text.trim());
-                Get.back();
+              onPressed: () {
+                submit(_controller.text.trim());
               },
             )
           ],
