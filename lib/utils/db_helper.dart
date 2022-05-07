@@ -49,6 +49,7 @@ class DBHelper {
       create table $_goalsTable (
         $id integer primary key,
         $goalText text not null,
+        $goalCustomOrder text,
         $goalColorIndex int not null,
         $goalCreatedDate timestamp default CURRENT_TIMESTAMP
       )
@@ -56,8 +57,9 @@ class DBHelper {
     await db.execute('''
       create table $_tasksTable (
         $id integer primary key,
+        $taskGoalId integer,
         $taskText text not null,
-        $taskCompleted boolean default false
+        $taskCompleted integer default false
       )
     ''');
   }
@@ -90,12 +92,24 @@ class DBHelper {
   Future<void> deleteGoal(int goalId) async {
     Database db = await instance.database;
     await db.delete(_goalsTable, where: "$id = ?", whereArgs: [goalId]);
+    await db.delete(_tasksTable, where: "$taskGoalId = ?", whereArgs: [goalId]);
   }
 
-  Future<List<Map<String, dynamic>>> getAllTasks(int goalId) async {
+  Future<Goal> getGoal(int goalId) async {
     Database db = await instance.database;
-    return await db
+    var rawGoal =
+        (await db.query(_goalsTable, where: "$id = ?", whereArgs: [goalId]))
+            .first;
+    return Goal.fromMap(rawGoal);
+  }
+
+  Future<List<Task>> getAllTasks(int goalId) async {
+    Database db = await instance.database;
+    List<Map<String, dynamic>> rawTasks = await db
         .query(_tasksTable, where: "$taskGoalId = ?", whereArgs: [goalId]);
+    List<Task> tasks =
+        rawTasks.map((rawTask) => Task.fromMap(rawTask)).toList();
+    return tasks;
   }
 
   Future<int> createTask(Task task) async {

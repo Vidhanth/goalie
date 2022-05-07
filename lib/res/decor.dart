@@ -10,6 +10,11 @@ const accentColor = Color(0xff00C3A5);
 const highlightColor = Colors.transparent;
 const splashColor = Colors.white10;
 const focusColor = Colors.white10;
+const pageTransitionsTheme = PageTransitionsTheme(
+  builders: {
+    TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+  },
+);
 
 //// Text
 final montserrat = GoogleFonts.montserratTextTheme(
@@ -23,6 +28,7 @@ final lightThemeData = ThemeData(
   splashColor: splashColor,
   highlightColor: highlightColor,
   focusColor: focusColor,
+  pageTransitionsTheme: pageTransitionsTheme,
   colorScheme: const ColorScheme.light(
     secondary: accentColor,
   ),
@@ -34,6 +40,7 @@ final darkThemeData = ThemeData(
   splashColor: splashColor,
   highlightColor: highlightColor,
   focusColor: focusColor,
+  pageTransitionsTheme: pageTransitionsTheme,
   colorScheme: const ColorScheme.dark(
     secondary: accentColor,
   ),

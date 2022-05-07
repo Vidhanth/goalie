@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vidhanth.goalie">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
    <application
-        android:label="goalie"
+        android:label="Goalie"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

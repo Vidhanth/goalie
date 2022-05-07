@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goalie/components/button.dart';
+import 'package:goalie/components/goal_list.dart';
 import 'package:goalie/components/sheet.dart';
+import 'package:goalie/controllers/goal_controller.dart';
+import 'package:goalie/models/goal.dart';
 import 'package:goalie/res/strings.dart';
 import 'package:goalie/utils/settings_helper.dart';
 
@@ -51,24 +54,14 @@ class GoalsScreen extends StatelessWidget {
             Get.bottomSheet(Sheet(
               title: 'Enter Goal',
               onSubmit: (goal) {
-                print(goal);
+                Goal newGoal = Goal(text: goal, color: 0);
+                Get.find<GoalController>().addGoal(newGoal);
               },
             ));
           },
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 0, 30, 50),
-          child: Opacity(
-            opacity: Get.isDarkMode ? 0.85 : 1,
-            child: Image.asset(
-              'assets/images/no_goals.png',
-              height: Get.height * 0.3,
-            ),
-          ),
-        ),
-      ),
+      body: GoalList(),
     );
   }
 }

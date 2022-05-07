@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:goalie/controllers/goal_controller.dart';
 import 'package:goalie/res/decor.dart';
 import 'package:goalie/routes/tasks_screen.dart';
 import 'package:goalie/utils/settings_helper.dart';
@@ -10,6 +11,7 @@ import 'routes/goals_screen.dart';
 void main() async {
   await GetStorage.init();
   await SettingsHelper.instance.initializeSettings();
+  Get.put(GoalController());
   runApp(const GoalieApp());
 }
 
@@ -27,11 +29,13 @@ class GoalieApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const GoalsScreen(),
-        '/tasks': (context) => const TasksScreen(),
+        '/tasks': (context) => TasksScreen(),
       },
       builder: (context, child) {
-        return SafeArea(
-          child: child!,
+        return Scaffold(
+          body: SafeArea(
+            child: child!,
+          ),
         );
       },
     );

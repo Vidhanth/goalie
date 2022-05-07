@@ -35,6 +35,7 @@ class Sheet extends StatelessWidget {
           children: [
             TextField(
               controller: _controller,
+              autofocus: true,
               onSubmitted: (value) {
                 submit(value.trim());
               },
