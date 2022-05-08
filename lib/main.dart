@@ -34,6 +34,7 @@ class GoalieApp extends StatelessWidget {
       },
       builder: (context, child) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: child!,
           ),
