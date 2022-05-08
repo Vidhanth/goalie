@@ -16,6 +16,14 @@ const pageTransitionsTheme = PageTransitionsTheme(
   },
 );
 
+//// ScrollBehaviour
+class CustomScrollBehaviour extends ScrollBehavior {
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) {
+    return const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
+  }
+}
+
 //// Text
 final montserrat = GoogleFonts.montserratTextTheme(
   Get.textTheme,

@@ -21,6 +21,7 @@ class GoalieApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      scrollBehavior: CustomScrollBehaviour(),
       debugShowCheckedModeBanner: false,
       themeMode:
           SettingsHelper.instance.isDarkMode ? ThemeMode.dark : ThemeMode.light,
