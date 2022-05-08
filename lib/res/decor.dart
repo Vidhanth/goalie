@@ -57,6 +57,19 @@ final darkThemeData = ThemeData(
   ),
 );
 
-// GoalsScreen
+// Goals
+
+List<Color> colorsList = [
+  Colors.deepPurple.shade200,
+  Colors.deepOrange.shade200,
+  Colors.red.shade200,
+  Colors.green.shade200,
+  Colors.blue.shade200,
+  Colors.grey.shade500,
+  Colors.brown.shade200,
+  Colors.cyan.shade200,
+  Colors.pink.shade200,
+  Colors.teal.shade200,
+];
 
 // TasksScreen

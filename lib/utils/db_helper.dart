@@ -22,6 +22,7 @@ class DBHelper {
   // tasks.db
   static const taskText = 'text';
   static const taskGoalId = 'goal_id';
+  static const taskColorIndex = 'color';
   static const taskCompleted = 'completed';
 
   static Database? _database;
@@ -59,6 +60,7 @@ class DBHelper {
         $id integer primary key,
         $taskGoalId integer,
         $taskText text not null,
+        $taskColorIndex int not null,
         $taskCompleted integer default false
       )
     ''');

@@ -68,10 +68,12 @@ class TasksScreen extends StatelessWidget {
             child: GetBuilder<TaskController>(
               builder: (taskController) => Text(
                 taskController.goalTitle,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontWeight: FontWeight.bold,
-                  fontSize: 27.0,
+                  fontSize: 25.0,
                 ),
               ),
             ),

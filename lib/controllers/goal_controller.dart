@@ -23,4 +23,10 @@ class GoalController extends GetxController {
     await dbHelper.deleteGoal(id);
     goalsList.removeWhere((goal) => goal.id == id);
   }
+
+  void updateGoal(Goal goal) async {
+    await dbHelper.updateGoal(goal);
+    goalsList[goalsList.indexWhere((oldGoal) => oldGoal.id == goal.id)] = goal;
+    update();
+  }
 }

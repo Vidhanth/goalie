@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goalie/components/confirm_sheet.dart';
 import 'package:goalie/controllers/task_controller.dart';
 import 'package:goalie/models/task.dart';
+import 'package:goalie/res/decor.dart';
+
+import 'options_sheet.dart';
 
 class TaskCard extends StatelessWidget {
   final taskController = Get.find<TaskController>();
@@ -29,22 +31,17 @@ class TaskCard extends StatelessWidget {
       child: Card(
         elevation: inDrag ? 3 : 1,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color: Colors.purple.shade200,
+        color: colorsList[task.color],
         margin: EdgeInsets.zero,
         child: InkWell(
           onTap: () {
             toggleCompleted(task);
           },
           onLongPress: () async {
-            if (await Get.bottomSheet(
-                  const ConfirmSheet(
-                    title: "Delete this Task?",
-                    message: "This cannot be undone.",
-                  ),
-                ) ??
-                false) {
-              taskController.deleteTask(task.id!);
-            }
+            await Get.bottomSheet(OptionsSheet(
+              task,
+              isTask: true,
+            ));
           },
           borderRadius: BorderRadius.circular(15),
           child: Padding(
@@ -75,7 +72,6 @@ class TaskCard extends StatelessWidget {
                           decoration: task.completed
                               ? TextDecoration.lineThrough
                               : null,
-                          // fontWeight: FontWeight.bold,
                           color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 18,
                         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goalie/components/confirm_sheet.dart';
-import 'package:goalie/controllers/goal_controller.dart';
+import 'package:goalie/components/options_sheet.dart';
 import 'package:goalie/controllers/task_controller.dart';
+import 'package:goalie/res/decor.dart';
 import 'package:goalie/utils/date_helper.dart';
 
 import '../models/goal.dart';
@@ -23,7 +23,7 @@ class GoalCard extends StatelessWidget {
       ),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color: Colors.purple.shade200,
+        color: colorsList[goal.color],
         margin: EdgeInsets.zero,
         child: InkWell(
           onTap: () async {
@@ -32,15 +32,10 @@ class GoalCard extends StatelessWidget {
             Get.delete<TaskController>();
           },
           onLongPress: () async {
-            if (await Get.bottomSheet(
-                  const ConfirmSheet(
-                    title: "Delete this Goal?",
-                    message: "This cannot be undone.",
-                  ),
-                ) ??
-                false) {
-              Get.find<GoalController>().deleteGoal(goal.id!);
-            }
+            await Get.bottomSheet(OptionsSheet(
+              goal,
+              isTask: false,
+            ));
           },
           borderRadius: BorderRadius.circular(15),
           child: Padding(
