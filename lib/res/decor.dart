@@ -13,6 +13,9 @@ const focusColor = Colors.white10;
 const pageTransitionsTheme = PageTransitionsTheme(
   builders: {
     TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+    TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+    TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+    TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
   },
 );
 
