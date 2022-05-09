@@ -69,7 +69,7 @@ class TasksScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: GetBuilder<TaskController>(
               builder: (taskController) => Text(
                 taskController.goalTitle,
