@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goalie/components/color_picker.dart';
+import 'package:goalie/components/add_sheet.dart';
 import 'package:goalie/components/confirm_sheet.dart';
-import 'package:goalie/components/sheet.dart';
 import 'package:goalie/controllers/goal_controller.dart';
 import 'package:goalie/controllers/task_controller.dart';
 import 'package:goalie/models/goal.dart';
@@ -45,18 +44,30 @@ class OptionsSheet extends StatelessWidget {
           LineIcons.edit,
           () async {
             Get.back();
-            await Get.bottomSheet(Sheet(
-              title: object.text,
-              onSubmit: (text) async {
-                if (isTask) {
-                  Task updatedTask = object.copyWith(text: text);
-                  Get.find<TaskController>().updateTask(updatedTask);
-                } else {
-                  Goal updatedGoal = object.copyWith(text: text);
-                  Get.find<GoalController>().updateGoal(updatedGoal);
-                }
-              },
-            ));
+            await Get.bottomSheet(
+              AddSheet(
+                title: object.text,
+                selectedIndex: object.color,
+                onSubmit: (text, color) async {
+                  if (text.isNotEmpty && text != object.text ||
+                      color != object.color) {
+                    if (isTask) {
+                      Task updatedTask = object.copyWith(
+                        text: text.isEmpty ? object.text : text,
+                        color: color,
+                      );
+                      Get.find<TaskController>().updateTask(updatedTask);
+                    } else {
+                      Goal updatedGoal = object.copyWith(
+                        text: text.isEmpty ? object.text : text,
+                        color: color,
+                      );
+                      Get.find<GoalController>().updateGoal(updatedGoal);
+                    }
+                  }
+                },
+              ),
+            );
           },
         ),
         _buildOption(
@@ -78,22 +89,6 @@ class OptionsSheet extends StatelessWidget {
               }
             }
           },
-        ),
-        const SizedBox(
-          height: 2,
-        ),
-        ColorPicker(
-          onColorSelected: (index) {
-            if (isTask) {
-              Task task = object.copyWith(color: index);
-              Get.find<TaskController>().updateTask(task);
-            } else {
-              Goal goal = object.copyWith(color: index);
-              Get.find<GoalController>().updateGoal(goal);
-            }
-            Get.back();
-          },
-          selectedIndex: object.color,
         ),
       ],
     );

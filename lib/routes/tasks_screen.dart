@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goalie/components/add_sheet.dart';
 import 'package:goalie/components/button.dart';
 import 'package:goalie/components/task_list.dart';
-import 'package:goalie/components/sheet.dart';
 import 'package:goalie/controllers/task_controller.dart';
 import 'package:goalie/models/task.dart';
 import 'package:goalie/res/strings.dart';
@@ -47,16 +47,21 @@ class TasksScreen extends StatelessWidget {
         child: Button(
           text: addTaskBtnText,
           onPressed: () {
-            Get.bottomSheet(Sheet(
-              title: 'Enter Task',
-              onSubmit: (taskTitle) {
-                Task newTask = Task(
-                  goalId: taskController.goalId,
-                  text: taskTitle,
-                );
-                taskController.addTask(newTask);
-              },
-            ));
+            Get.bottomSheet(
+              AddSheet(
+                title: 'Enter Task',
+                onSubmit: (taskTitle, selectedColor) {
+                  if (taskTitle.isNotEmpty) {
+                    Task newTask = Task(
+                      goalId: taskController.goalId,
+                      text: taskTitle,
+                      color: selectedColor,
+                    );
+                    taskController.addTask(newTask);
+                  }
+                },
+              ),
+            );
           },
         ),
       ),

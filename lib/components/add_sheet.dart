@@ -1,23 +1,29 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:goalie/components/button.dart';
+import 'package:goalie/components/color_picker.dart';
 
-class Sheet extends StatelessWidget {
+class AddSheet extends StatelessWidget {
   final String title;
-  final Function(String) onSubmit;
+  final Function(String, int) onSubmit;
+  int selectedIndex;
 
   final TextEditingController _controller = TextEditingController();
 
-  Sheet({
+  AddSheet({
     Key? key,
     required this.title,
     required this.onSubmit,
+    this.selectedIndex = 0,
   }) : super(key: key);
 
   submit(String value) async {
-    if (value.isNotEmpty) {
-      await onSubmit.call(value);
-    }
+    await onSubmit.call(
+      value,
+      selectedIndex,
+    );
     Get.back();
   }
 
@@ -53,6 +59,19 @@ class Sheet extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 15,
+            ),
+            StatefulBuilder(builder: (context, setState) {
+              return ColorPicker(
+                onColorSelected: (index) {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
+                selectedIndex: selectedIndex,
+              );
+            }),
             const SizedBox(
               height: 15,
             ),
