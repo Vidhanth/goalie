@@ -27,7 +27,7 @@ class Button extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         padding: const EdgeInsets.symmetric(
-          vertical: 26,
+          vertical: 20,
           horizontal: 8,
         ),
         primary: bgColor ?? Theme.of(context).colorScheme.secondary,

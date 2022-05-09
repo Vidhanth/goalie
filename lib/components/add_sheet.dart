@@ -34,7 +34,7 @@ class AddSheet extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
       ),
       margin: EdgeInsets.zero,
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -48,7 +48,7 @@ class AddSheet extends StatelessWidget {
               style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
               decoration: InputDecoration(
                 contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 fillColor:
                     Theme.of(context).colorScheme.onSurface.withOpacity(0.10),
                 filled: true,
@@ -60,7 +60,7 @@ class AddSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 15,
+              height: 10,
             ),
             StatefulBuilder(builder: (context, setState) {
               return ColorPicker(
@@ -73,7 +73,7 @@ class AddSheet extends StatelessWidget {
               );
             }),
             const SizedBox(
-              height: 15,
+              height: 10,
             ),
             Button(
               text: 'Done',
