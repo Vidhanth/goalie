@@ -79,6 +79,9 @@ class OptionsSheet extends StatelessWidget {
             }
           },
         ),
+        const SizedBox(
+          height: 2,
+        ),
         ColorPicker(
           onColorSelected: (index) {
             if (isTask) {

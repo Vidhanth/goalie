@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:goalie/controllers/goal_controller.dart';
 import 'package:goalie/models/goal.dart';
 import 'package:goalie/models/task.dart';
 import 'package:goalie/utils/db_helper.dart';
@@ -6,6 +7,7 @@ import 'package:goalie/utils/db_helper.dart';
 class TaskController extends GetxController {
   int goalId;
   String goalTitle = "";
+  List<int> updatedTasks = [];
 
   late Goal parentGoal;
 
@@ -54,6 +56,7 @@ class TaskController extends GetxController {
       parentGoal.customOrder!.add(task.id!);
       await dbHelper.updateGoal(parentGoal);
     }
+    Get.find<GoalController>().refreshGoals();
     update();
   }
 
@@ -68,6 +71,7 @@ class TaskController extends GetxController {
     tasksList.removeWhere((task) => task.id == id);
     update();
     parentGoal.customOrder!.remove(id);
+    Get.find<GoalController>().refreshGoals();
     await dbHelper.updateGoal(parentGoal);
   }
 }

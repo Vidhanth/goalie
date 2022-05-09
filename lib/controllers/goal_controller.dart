@@ -9,8 +9,12 @@ class GoalController extends GetxController {
 
   @override
   void onInit() async {
-    goalsList(await dbHelper.getAllGoals());
+    refreshGoals();
     super.onInit();
+  }
+
+  void refreshGoals() async {
+    goalsList(await dbHelper.getAllGoals());
   }
 
   void addGoal(Goal goal) async {

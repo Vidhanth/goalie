@@ -71,6 +71,22 @@ class DBHelper {
     List<Map<String, dynamic>> rawGoals = await db.query(_goalsTable);
     List<Goal> goals =
         rawGoals.map((rawGoal) => Goal.fromMap(rawGoal)).toList();
+    for (var goal in goals) {
+      List<Map<String, dynamic>> completedStats = await db.query(_tasksTable,
+          columns: [taskCompleted],
+          where: "$taskGoalId = ?",
+          whereArgs: [goal.id]);
+      if (completedStats.isNotEmpty) {
+        int total = 0;
+        num completed = 0;
+        for (Map task in completedStats) {
+          total++;
+          completed += task.values.first;
+        }
+        goal.completedTasks = completed.toInt();
+        goal.totalTasks = total;
+      }
+    }
     return goals;
   }
 

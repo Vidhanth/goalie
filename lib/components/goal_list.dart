@@ -30,12 +30,15 @@ class GoalList extends StatelessWidget {
                 ),
               ),
             )
-          : ListView.builder(
-              itemCount: goalsController.goalsList.length,
-              itemBuilder: (context, index) {
-                Goal goal = goalsController.goalsList[index];
-                return GoalCard(goal: goal);
-              },
+          : FadeIn(
+              duration: 500.milliseconds,
+              child: ListView.builder(
+                itemCount: goalsController.goalsList.length,
+                itemBuilder: (context, index) {
+                  Goal goal = goalsController.goalsList[index];
+                  return GoalCard(goal: goal);
+                },
+              ),
             );
     });
   }

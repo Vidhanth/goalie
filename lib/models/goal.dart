@@ -7,6 +7,8 @@ class Goal {
     required this.color,
     this.createdAt,
     this.customOrder,
+    this.totalTasks,
+    this.completedTasks,
   }) {
     createdAt ??= DateHelper.getDatabaseDate(DateTime.now());
   }
@@ -16,19 +18,26 @@ class Goal {
   int color;
   String? createdAt;
   List<int>? customOrder;
+  int? totalTasks;
+  int? completedTasks;
 
-  Goal copyWith(
-      {int? id,
-      String? text,
-      int? color,
-      String? createdAt,
-      List<int>? customOrder}) {
+  Goal copyWith({
+    int? id,
+    String? text,
+    int? color,
+    String? createdAt,
+    List<int>? customOrder,
+    int? totalTasks,
+    int? completedTasks,
+  }) {
     return Goal(
       id: id ?? this.id,
       text: text ?? this.text,
       color: color ?? this.color,
       createdAt: createdAt ?? this.createdAt,
       customOrder: customOrder ?? this.customOrder,
+      totalTasks: totalTasks ?? this.totalTasks,
+      completedTasks: completedTasks ?? this.completedTasks,
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goalie/components/options_sheet.dart';
+import 'package:goalie/controllers/goal_controller.dart';
 import 'package:goalie/controllers/task_controller.dart';
 import 'package:goalie/res/decor.dart';
 import 'package:goalie/utils/date_helper.dart';
@@ -27,8 +28,11 @@ class GoalCard extends StatelessWidget {
         margin: EdgeInsets.zero,
         child: InkWell(
           onTap: () async {
-            Get.put(TaskController(goal.id!));
+            final taskController = Get.put(TaskController(goal.id!));
             await Get.toNamed('/tasks');
+            if (taskController.updatedTasks.isNotEmpty) {
+              Get.find<GoalController>().refreshGoals();
+            }
             Get.delete<TaskController>();
           },
           onLongPress: () async {
@@ -43,25 +47,59 @@ class GoalCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  goal.text,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontSize: 20,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        goal.text,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onSurface,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      DateHelper.getDisplayDate(goal.createdAt!),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  DateHelper.getDisplayDate(goal.createdAt!),
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
+                if (goal.totalTasks != null) ...[
+                  LinearProgressIndicator(
+                    value: goal.completedTasks! / goal.totalTasks!,
                     color: Theme.of(context).colorScheme.onSurface,
-                    fontSize: 18,
+                    backgroundColor: Colors.black12,
                   ),
-                ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    '${(goal.completedTasks! / goal.totalTasks! * 100).truncate()}% Completed',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  )
+                ] else
+                  Text(
+                    'No Tasks',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  )
               ],
             ),
           ),
