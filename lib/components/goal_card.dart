@@ -29,11 +29,9 @@ class GoalCard extends StatelessWidget {
         margin: EdgeInsets.zero,
         child: InkWell(
           onTap: () async {
-            final taskController = Get.put(TaskController(goal.id!));
+            Get.put(TaskController(goal.id!));
             await Get.toNamed('/tasks');
-            if (taskController.updatedTasks.isNotEmpty) {
-              Get.find<GoalController>().refreshGoals();
-            }
+            Get.find<GoalController>().refreshGoals();
             Get.delete<TaskController>();
           },
           onLongPress: () async {

@@ -19,11 +19,6 @@ class TaskCard extends StatelessWidget {
 
   void toggleCompleted(task) {
     taskController.updateTask(task.copyWith(completed: !task.completed));
-    if (!taskController.updatedTasks.contains(task.id)) {
-      taskController.updatedTasks.add(task.id);
-    } else {
-      taskController.updatedTasks.remove(task.id);
-    }
   }
 
   @override
