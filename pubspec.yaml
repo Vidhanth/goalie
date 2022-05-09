@@ -22,6 +22,8 @@ dependencies:
   get_storage: ^2.0.3
   intl: ^0.17.0
   implicitly_animated_reorderable_list: ^0.4.2  
+  animated_progress_bar:
+    git: https://github.com/Vidhanth/animated_progress_bar.git
 
 dev_dependencies:
   flutter_test:

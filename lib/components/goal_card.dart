@@ -1,3 +1,4 @@
+import 'package:animated_progress_bar/animated_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goalie/components/options_sheet.dart';
@@ -74,16 +75,18 @@ class GoalCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 12,
                 ),
                 if (goal.totalTasks != null) ...[
-                  LinearProgressIndicator(
+                  AnimatedProgressBar(
+                    radius: BorderRadius.circular(20),
+                    height: 5,
+                    bgColor: Colors.black12,
+                    progressColor: Theme.of(context).colorScheme.onSurface,
                     value: goal.completedTasks! / goal.totalTasks!,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    backgroundColor: Colors.black12,
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 12,
                   ),
                   Text(
                     '${(goal.completedTasks! / goal.totalTasks! * 100).truncate()}% Completed',
