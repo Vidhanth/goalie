@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:goalie/components/add_sheet.dart';
 import 'package:goalie/components/button.dart';
 import 'package:goalie/components/task_list.dart';
+import 'package:goalie/controllers/goal_controller.dart';
 import 'package:goalie/controllers/task_controller.dart';
 import 'package:goalie/models/task.dart';
 import 'package:goalie/res/strings.dart';
@@ -49,7 +50,7 @@ class TasksScreen extends StatelessWidget {
           onPressed: () {
             Get.bottomSheet(
               AddSheet(
-                title: 'Enter Task',
+                hint: enterTaskText,
                 onSubmit: (taskTitle, selectedColor) {
                   if (taskTitle.isNotEmpty) {
                     Task newTask = Task(
@@ -68,17 +69,38 @@ class TasksScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-            child: GetBuilder<TaskController>(
-              builder: (taskController) => Text(
-                taskController.goalTitle,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25.0,
+          GestureDetector(
+            onTap: () async {
+              await Get.bottomSheet(
+                AddSheet(
+                  hint: editGoalText,
+                  initialText: taskController.parentGoal.text,
+                  onSubmit: (text, color) {
+                    taskController.parentGoal =
+                        taskController.parentGoal.copyWith(
+                      text:
+                          text.isEmpty ? taskController.parentGoal.text : text,
+                      color: color,
+                    );
+                    taskController.update();
+                    Get.find<GoalController>()
+                        .updateGoal(taskController.parentGoal);
+                  },
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+              child: GetBuilder<TaskController>(
+                builder: (taskController) => Text(
+                  taskController.parentGoal.text,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25.0,
+                  ),
                 ),
               ),
             ),

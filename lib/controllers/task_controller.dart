@@ -5,7 +5,6 @@ import 'package:goalie/utils/db_helper.dart';
 
 class TaskController extends GetxController {
   int goalId;
-  String goalTitle = "";
 
   late Goal parentGoal;
 
@@ -26,7 +25,6 @@ class TaskController extends GetxController {
     } else {
       tasksList = tasks;
     }
-    goalTitle = parentGoal.text;
     super.onInit();
     update();
   }

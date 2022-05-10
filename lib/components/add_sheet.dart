@@ -6,7 +6,7 @@ import 'package:goalie/components/button.dart';
 import 'package:goalie/components/color_picker.dart';
 
 class AddSheet extends StatelessWidget {
-  final String title;
+  final String hint, initialText;
   final Function(String, int) onSubmit;
   int selectedIndex;
 
@@ -14,8 +14,9 @@ class AddSheet extends StatelessWidget {
 
   AddSheet({
     Key? key,
-    required this.title,
+    required this.hint,
     required this.onSubmit,
+    this.initialText = "",
     this.selectedIndex = 0,
   }) : super(key: key);
 
@@ -29,6 +30,9 @@ class AddSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (_controller.text.isEmpty && initialText.isNotEmpty) {
+      _controller.text = initialText;
+    }
     return Card(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
@@ -52,7 +56,7 @@ class AddSheet extends StatelessWidget {
                 fillColor:
                     Theme.of(context).colorScheme.onSurface.withOpacity(0.10),
                 filled: true,
-                hintText: title,
+                hintText: hint,
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(15),

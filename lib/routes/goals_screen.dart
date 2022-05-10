@@ -53,7 +53,7 @@ class GoalsScreen extends StatelessWidget {
           onPressed: () {
             Get.bottomSheet(
               AddSheet(
-                title: 'Enter Goal',
+                hint: enterGoalText,
                 onSubmit: (goal, selectedColor) {
                   if (goal.isNotEmpty) {
                     Goal newGoal = Goal(text: goal, color: selectedColor);

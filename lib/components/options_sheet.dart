@@ -6,6 +6,7 @@ import 'package:goalie/controllers/goal_controller.dart';
 import 'package:goalie/controllers/task_controller.dart';
 import 'package:goalie/models/goal.dart';
 import 'package:goalie/models/task.dart';
+import 'package:goalie/res/strings.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -46,7 +47,8 @@ class OptionsSheet extends StatelessWidget {
             Get.back();
             await Get.bottomSheet(
               AddSheet(
-                title: object.text,
+                hint: isTask ? editTaskText : editGoalText,
+                initialText: object.text,
                 selectedIndex: object.color,
                 onSubmit: (text, color) async {
                   if (text.isNotEmpty && text != object.text ||
