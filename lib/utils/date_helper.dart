@@ -1,3 +1,4 @@
+import 'package:goalie/res/strings.dart';
 import 'package:intl/intl.dart';
 
 class DateHelper {
@@ -11,11 +12,11 @@ class DateHelper {
     DateFormat formatter = DateFormat(DateFormat.ABBR_MONTH_DAY);
 
     if (date.isToday) {
-      return 'Today';
+      return todayText;
     }
 
     if (date.isYesterday) {
-      return 'Yesterday';
+      return yesterdayText;
     }
 
     return formatter.format(date);

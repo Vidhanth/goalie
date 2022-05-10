@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:goalie/components/button.dart';
 import 'package:goalie/components/color_picker.dart';
+import 'package:goalie/res/strings.dart';
 
 class AddSheet extends StatelessWidget {
   final String hint, initialText;
@@ -80,7 +81,7 @@ class AddSheet extends StatelessWidget {
               height: 10,
             ),
             Button(
-              text: 'Done',
+              text: doneText,
               onPressed: () {
                 submit(_controller.text.trim());
               },

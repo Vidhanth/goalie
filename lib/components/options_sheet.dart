@@ -35,13 +35,12 @@ class OptionsSheet extends StatelessWidget {
   }
 
   _buildOptionsColumn(BuildContext context) {
-    String taskOrGoal = isTask ? "Task" : "Goal";
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildOption(
-          'Edit',
+          editText,
           LineIcons.edit,
           () async {
             Get.back();
@@ -73,14 +72,15 @@ class OptionsSheet extends StatelessWidget {
           },
         ),
         _buildOption(
-          'Delete',
+          deleteText,
           LineIcons.trash,
           () async {
             Get.back();
             bool confirmDelete = await Get.bottomSheet(
                   ConfirmSheet(
-                      title: "Delete $taskOrGoal?",
-                      message: "This cannot be undone"),
+                    title: isTask ? deleteTaskText : deleteGoalText,
+                    message: cannotUndoText,
+                  ),
                 ) ??
                 false;
             if (confirmDelete) {
@@ -114,11 +114,13 @@ class OptionsSheet extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            Text(title,
-                style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  color: Get.theme.colorScheme.onBackground,
-                )),
+            Text(
+              title,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                color: Get.theme.colorScheme.onBackground,
+              ),
+            ),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:goalie/components/button.dart';
+import 'package:goalie/res/strings.dart';
 
 class ConfirmSheet extends StatelessWidget {
   final String title, message;
@@ -51,7 +52,7 @@ class ConfirmSheet extends StatelessWidget {
                   child: Button(
                     width: 10,
                     bgColor: Colors.red,
-                    text: 'Yes',
+                    text: dialogPositiveText,
                     onPressed: () {
                       Get.back(result: true);
                     },
@@ -63,7 +64,7 @@ class ConfirmSheet extends StatelessWidget {
                 Expanded(
                   child: Button(
                     width: 10,
-                    text: 'No',
+                    text: dialogNegativeText,
                     onPressed: () {
                       Get.back(result: false);
                     },

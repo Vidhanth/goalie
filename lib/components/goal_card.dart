@@ -5,6 +5,7 @@ import 'package:goalie/components/options_sheet.dart';
 import 'package:goalie/controllers/goal_controller.dart';
 import 'package:goalie/controllers/task_controller.dart';
 import 'package:goalie/res/decor.dart';
+import 'package:goalie/res/strings.dart';
 import 'package:goalie/utils/date_helper.dart';
 
 import '../models/goal.dart';
@@ -87,7 +88,7 @@ class GoalCard extends StatelessWidget {
                     height: 12,
                   ),
                   Text(
-                    '${(goal.completedTasks! / goal.totalTasks! * 100).truncate()}% Completed',
+                    '${(goal.completedTasks! / goal.totalTasks! * 100).truncate()}% $completedText',
                     style: TextStyle(
                       fontWeight: FontWeight.normal,
                       color: Theme.of(context).colorScheme.onSurface,
@@ -95,7 +96,7 @@ class GoalCard extends StatelessWidget {
                   )
                 ] else
                   Text(
-                    'No Tasks',
+                    noTasksText,
                     style: TextStyle(
                       fontWeight: FontWeight.normal,
                       color: Theme.of(context).colorScheme.onSurface,
