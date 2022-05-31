@@ -68,7 +68,10 @@ class DBHelper {
 
   Future<List<Goal>> getAllGoals() async {
     Database db = await instance.database;
-    List<Map<String, dynamic>> rawGoals = await db.query(_goalsTable);
+    List<Map<String, dynamic>> rawGoals = await db.query(
+      _goalsTable,
+      orderBy: "$goalCreatedDate DESC",
+    );
     List<Goal> goals =
         rawGoals.map((rawGoal) => Goal.fromMap(rawGoal)).toList();
     for (var goal in goals) {

@@ -20,7 +20,7 @@ class GoalController extends GetxController {
   void addGoal(Goal goal) async {
     int id = await dbHelper.createGoal(goal);
     goal = goal.copyWith(id: id);
-    goalsList.add(goal);
+    goalsList.insert(0, goal);
   }
 
   void deleteGoal(int id) async {
