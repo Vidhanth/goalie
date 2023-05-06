@@ -30,7 +30,7 @@ class Button extends StatelessWidget {
           vertical: 20,
           horizontal: 8,
         ),
-        primary: bgColor ?? Theme.of(context).colorScheme.secondary,
+        backgroundColor: bgColor ?? Theme.of(context).colorScheme.secondary,
         minimumSize: Size(width ?? Get.size.width, height ?? 50),
       ),
       onPressed: () {
