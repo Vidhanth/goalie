@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 import 'package:goalie/components/task_card.dart';
 import 'package:goalie/controllers/task_controller.dart';
 import 'package:goalie/models/task.dart';
-import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
-import 'package:implicitly_animated_reorderable_list/transitions.dart';
+import 'package:implicitly_animated_reorderable_list_2/implicitly_animated_reorderable_list_2.dart';
 
 class TaskList extends StatelessWidget {
   const TaskList({Key? key}) : super(key: key);
@@ -30,29 +29,18 @@ class TaskList extends StatelessWidget {
               ),
             )
           : ImplicitlyAnimatedReorderableList<Task>(
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              padding: const EdgeInsets.only(top: 0, bottom: 10),
               items: taskController.tasksList,
-              itemBuilder: (context, animation, Task task, index) {
+              itemBuilder: (context, animation, item, i) {
                 return Reorderable(
-                  key: ValueKey(task.id),
-                  builder: (context, anim, inDrag) => SizeFadeTransition(
-                    sizeFraction: 0.7,
-                    curve: Curves.easeInOut,
-                    animation: animation,
-                    child: Handle(
-                      delay: const Duration(milliseconds: 100),
-                      child: TaskCard(task: task, inDrag: inDrag),
-                    ),
+                  key: Key(
+                    item.id.toString(),
                   ),
+                  child: Handle(child: TaskCard(task: item)),
                 );
               },
-              areItemsTheSame: (Task a, Task b) => a.id == b.id,
-              onReorderFinished:
-                  (Task task, int from, int to, List<Task> newItems) {
-                taskController.reorderTasks(newItems);
+              areItemsTheSame: (task, other) => task.id == other.id,
+              onReorderFinished: (task, from, to, newTasks) {
+                taskController.reorderTasks(newTasks);
               },
             );
     });
