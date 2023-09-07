@@ -1,5 +1,3 @@
-import 'package:goalie/utils/date_helper.dart';
-
 class Goal {
   Goal({
     this.id,
@@ -10,7 +8,7 @@ class Goal {
     this.totalTasks,
     this.completedTasks,
   }) {
-    createdAt ??= DateHelper.getDatabaseDate(DateTime.now());
+    createdAt ??= DateTime.now().toString();
   }
 
   int? id;
