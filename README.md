@@ -23,15 +23,15 @@ The app employs SQLite, a reliable and lightweight database engine, to store you
 ## Screenshots
 
 <p float="left">
-<img src="https://github.com/Vidhanth/goalie/blob/master/docs/ss1.png" height="300"/>
-<img src="https://github.com/Vidhanth/goalie/blob/master/docs/ss2.png" height="300"/>
-<img src="https://github.com/Vidhanth/goalie/blob/master/docs/ss3.png" height="300"/>
-<img src="https://github.com/Vidhanth/goalie/blob/master/docs/ss4.png" height="300"/>
-<img src="https://github.com/Vidhanth/goalie/blob/master/docs/ss5.png" height="300"/>
-<img src="https://github.com/Vidhanth/goalie/blob/master/docs/ss6.png" height="300"/>
-<img src="https://github.com/Vidhanth/goalie/blob/master/docs/ss7.png" height="300"/>
-<img src="https://github.com/Vidhanth/goalie/blob/master/docs/ss8.png" height="300"/>
-<img src="https://github.com/Vidhanth/goalie/blob/master/docs/ss9.png" height="300"/>
+<img src="https://i.ibb.co/61d93zw/ss1.png" alt="ss1" border="0" height=300>
+<img src="https://i.ibb.co/Qm3Z8bX/ss2.png" alt="ss2" border="0" height=300>
+<img src="https://i.ibb.co/N7Y5gs0/ss3.png" alt="ss3" border="0" height=300>
+<img src="https://i.ibb.co/8jkgNGc/ss4.png" alt="ss4" border="0" height=300>
+<img src="https://i.ibb.co/N3Gc427/ss5.png" alt="ss5" border="0" height=300>
+<img src="https://i.ibb.co/LrHyvwc/ss6.png" alt="ss6" border="0" height=300>
+<img src="https://i.ibb.co/LZrDN6p/ss7.png" alt="ss7" border="0" height=300>
+<img src="https://i.ibb.co/zJZSXZs/ss8.png" alt="ss8" border="0" height=300>
+<img src="https://i.ibb.co/h7cx0W4/ss9.png" alt="ss9" border="0" height=300>
 </p>
 
 ## Getting Started
